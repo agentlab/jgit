@@ -323,7 +323,7 @@ public class CheckoutCommand extends GitCommand<Ref> {
 			} else
 				status = new CheckoutResult(new ArrayList<String>(dco
 						.getUpdated().keySet()), dco.getRemoved());
-			repo.fireEvent(new CommandPerformedEvent(this.getClass()));
+			repo.fireEvent(new CommandPerformedEvent(this.getClass(), ref));
 			return ref;
 		} catch (IOException ioe) {
 			throw new JGitInternalException(ioe.getMessage(), ioe);

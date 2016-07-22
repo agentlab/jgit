@@ -195,8 +195,10 @@ public class CherryPickCommand extends GitCommand<CherryPickResult> {
 							JGitText.get().exceptionCaughtDuringExecutionOfCherryPickCommand,
 							e), e);
 		}
-		repo.fireEvent(new CommandPerformedEvent(this.getClass()));
-		return new CherryPickResult(newHead, cherryPickedRefs);
+		CherryPickResult result = new CherryPickResult(newHead,
+				cherryPickedRefs);
+		repo.fireEvent(new CommandPerformedEvent(this.getClass(), result));
+		return result;
 	}
 
 	private RevCommit getParentCommit(RevCommit srcCommit, RevWalk revWalk)

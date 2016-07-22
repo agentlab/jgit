@@ -335,7 +335,7 @@ public class PullCommand extends TransportCommand<PullCommand, PullResult> {
 		}
 		monitor.endTask();
 		if (result.isSuccessful())
-			repo.fireEvent(new CommandPerformedEvent(this.getClass()));
+			repo.fireEvent(new CommandPerformedEvent(this.getClass(), result));
 		return result;
 	}
 

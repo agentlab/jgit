@@ -127,7 +127,7 @@ public class FetchCommand extends TransportCommand<FetchCommand, FetchResult> {
 			configure(transport);
 
 			FetchResult result = transport.fetch(monitor, refSpecs);
-			repo.fireEvent(new CommandPerformedEvent(this.getClass()));
+			repo.fireEvent(new CommandPerformedEvent(this.getClass(), result));
 			return result;
 		} catch (NoRemoteRepositoryException e) {
 			throw new InvalidRemoteException(MessageFormat.format(

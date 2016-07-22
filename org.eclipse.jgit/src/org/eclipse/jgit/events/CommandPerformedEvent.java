@@ -10,14 +10,19 @@ public class CommandPerformedEvent
 
 	private Class<?> type;
 
+	private Object result;
+
 	/**
 	 *
 	 * @param type
 	 *            Type of command
+	 * @param result
+	 *            Result of command
 	 */
-	public CommandPerformedEvent(Class<?> type) {
+	public CommandPerformedEvent(Class<?> type, Object result) {
 		super();
 		this.type = type;
+		this.result = result;
 	}
 
 	@Override
@@ -35,5 +40,13 @@ public class CommandPerformedEvent
 	 */
 	public Class<?> getCommandType() {
 		return type;
+	}
+
+	/**
+	 *
+	 * @return The result of performed command
+	 */
+	public Object getResult() {
+		return result;
 	}
 }

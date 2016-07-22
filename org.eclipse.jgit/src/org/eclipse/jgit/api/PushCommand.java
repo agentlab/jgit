@@ -189,7 +189,8 @@ public class PushCommand extends
 					e);
 		}
 		if (!pushResults.isEmpty())
-			repo.fireEvent(new CommandPerformedEvent(this.getClass()));
+			repo.fireEvent(
+					new CommandPerformedEvent(this.getClass(), pushResults));
 		return pushResults;
 
 	}
