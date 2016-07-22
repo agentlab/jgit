@@ -66,6 +66,7 @@ import org.eclipse.jgit.dircache.DirCacheEntry;
 import org.eclipse.jgit.dircache.DirCacheIterator;
 import org.eclipse.jgit.errors.AmbiguousObjectException;
 import org.eclipse.jgit.errors.UnmergedPathException;
+import org.eclipse.jgit.events.CommandPerformedEvent;
 import org.eclipse.jgit.internal.JGitText;
 import org.eclipse.jgit.lib.AnyObjectId;
 import org.eclipse.jgit.lib.Constants;
@@ -322,7 +323,7 @@ public class CheckoutCommand extends GitCommand<Ref> {
 			} else
 				status = new CheckoutResult(new ArrayList<String>(dco
 						.getUpdated().keySet()), dco.getRemoved());
-
+			repo.fireEvent(new CommandPerformedEvent(this.getClass()));
 			return ref;
 		} catch (IOException ioe) {
 			throw new JGitInternalException(ioe.getMessage(), ioe);

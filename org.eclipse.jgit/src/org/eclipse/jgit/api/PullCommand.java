@@ -58,6 +58,7 @@ import org.eclipse.jgit.api.errors.NoHeadException;
 import org.eclipse.jgit.api.errors.RefNotAdvertisedException;
 import org.eclipse.jgit.api.errors.RefNotFoundException;
 import org.eclipse.jgit.api.errors.WrongRepositoryStateException;
+import org.eclipse.jgit.events.CommandPerformedEvent;
 import org.eclipse.jgit.internal.JGitText;
 import org.eclipse.jgit.lib.AnyObjectId;
 import org.eclipse.jgit.lib.Config;
@@ -333,6 +334,8 @@ public class PullCommand extends TransportCommand<PullCommand, PullResult> {
 			result = new PullResult(fetchRes, remote, mergeRes);
 		}
 		monitor.endTask();
+		if (result.isSuccessful())
+			repo.fireEvent(new CommandPerformedEvent(this.getClass()));
 		return result;
 	}
 

@@ -57,6 +57,7 @@ import org.eclipse.jgit.api.errors.UnmergedPathsException;
 import org.eclipse.jgit.api.errors.WrongRepositoryStateException;
 import org.eclipse.jgit.dircache.DirCacheCheckout;
 import org.eclipse.jgit.errors.MissingObjectException;
+import org.eclipse.jgit.events.CommandPerformedEvent;
 import org.eclipse.jgit.internal.JGitText;
 import org.eclipse.jgit.lib.AnyObjectId;
 import org.eclipse.jgit.lib.Constants;
@@ -194,6 +195,7 @@ public class CherryPickCommand extends GitCommand<CherryPickResult> {
 							JGitText.get().exceptionCaughtDuringExecutionOfCherryPickCommand,
 							e), e);
 		}
+		repo.fireEvent(new CommandPerformedEvent(this.getClass()));
 		return new CherryPickResult(newHead, cherryPickedRefs);
 	}
 

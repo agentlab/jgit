@@ -87,6 +87,18 @@ public class ListenerList {
 	}
 
 	/**
+	 * Register a CommandPerformedListener
+	 *
+	 * @param listener
+	 *            the listener implementation.
+	 * @return handle to later remove the listener.
+	 */
+	public ListenerHandle addOperationPerformedListener(
+			CommandPerformedListener listener) {
+		return addListener(CommandPerformedListener.class, listener);
+	}
+
+	/**
 	 * Add a listener to the list.
 	 *
 	 * @param <T>

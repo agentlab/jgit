@@ -53,6 +53,7 @@ import org.eclipse.jgit.api.errors.JGitInternalException;
 import org.eclipse.jgit.errors.NoRemoteRepositoryException;
 import org.eclipse.jgit.errors.NotSupportedException;
 import org.eclipse.jgit.errors.TransportException;
+import org.eclipse.jgit.events.CommandPerformedEvent;
 import org.eclipse.jgit.internal.JGitText;
 import org.eclipse.jgit.lib.ConfigConstants;
 import org.eclipse.jgit.lib.Constants;
@@ -126,6 +127,7 @@ public class FetchCommand extends TransportCommand<FetchCommand, FetchResult> {
 			configure(transport);
 
 			FetchResult result = transport.fetch(monitor, refSpecs);
+			repo.fireEvent(new CommandPerformedEvent(this.getClass()));
 			return result;
 		} catch (NoRemoteRepositoryException e) {
 			throw new InvalidRemoteException(MessageFormat.format(

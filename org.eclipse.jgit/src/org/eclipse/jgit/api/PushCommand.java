@@ -58,6 +58,7 @@ import org.eclipse.jgit.errors.NotSupportedException;
 import org.eclipse.jgit.errors.TooLargeObjectInPackException;
 import org.eclipse.jgit.errors.TooLargePackException;
 import org.eclipse.jgit.errors.TransportException;
+import org.eclipse.jgit.events.CommandPerformedEvent;
 import org.eclipse.jgit.internal.JGitText;
 import org.eclipse.jgit.lib.Constants;
 import org.eclipse.jgit.lib.NullProgressMonitor;
@@ -187,7 +188,8 @@ public class PushCommand extends
 					JGitText.get().exceptionCaughtDuringExecutionOfPushCommand,
 					e);
 		}
-
+		if (!pushResults.isEmpty())
+			repo.fireEvent(new CommandPerformedEvent(this.getClass()));
 		return pushResults;
 
 	}
