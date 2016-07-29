@@ -2,8 +2,9 @@ package org.eclipse.jgit.events;
 
 /**
  * Listens to {@link CommandPerformedEvent}
- * 
+ *
  * @author Alexander Kozinko
+ * @since 4.4
  */
 public interface CommandPerformedListener extends RepositoryListener {
 

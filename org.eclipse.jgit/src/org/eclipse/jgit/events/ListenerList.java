@@ -92,6 +92,7 @@ public class ListenerList {
 	 * @param listener
 	 *            the listener implementation.
 	 * @return handle to later remove the listener.
+	 * @since 4.4
 	 */
 	public ListenerHandle addOperationPerformedListener(
 			CommandPerformedListener listener) {

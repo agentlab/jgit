@@ -4,6 +4,7 @@ package org.eclipse.jgit.events;
  * Describes successful command completion.
  *
  * @author Alexander Kozinko
+ * @since 4.4
  */
 public class CommandPerformedEvent
 		extends RepositoryEvent<CommandPerformedListener> {
