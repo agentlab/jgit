@@ -1,4 +1,4 @@
-package org.eclipse.jgit.aspect.commands;
+package org.eclipse.jgit.ext.commands;
 
 import org.eclipse.jgit.events.RepositoryEvent;
 

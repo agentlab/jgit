@@ -7,6 +7,8 @@ Bundle-Activator: com.github.jgit.test.Activator
 Bundle-Vendor: GITHUB
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Import-Package: org.eclipse.jgit.api;version="4.4.1",
+ org.eclipse.jgit.events;version="4.4.1",
+ org.eclipse.jgit.ext.commands,
  org.eclipse.jgit.lib;version="4.4.1",
  org.eclipse.jgit.storage.file;version="4.4.1",
  org.osgi.framework;version="1.3.0"
