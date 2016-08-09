@@ -3,7 +3,6 @@ package com.github.jgit.test;
 import java.io.File;
 
 import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.api.PullCommand;
 import org.eclipse.jgit.api.PullResult;
 import org.eclipse.jgit.ext.commands.CommandPerformedEvent;
 import org.eclipse.jgit.ext.commands.CommandPerformedListener;

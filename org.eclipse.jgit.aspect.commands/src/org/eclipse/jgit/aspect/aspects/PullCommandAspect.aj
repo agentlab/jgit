@@ -93,4 +93,21 @@ public aspect PullCommandAspect {
 	after(org.eclipse.jgit.api.CheckoutCommand cmd) returning(org.eclipse.jgit.api.CheckoutResult res): execOnCheckout(cmd) {
 		cmd.getRepository().fireEvent(new CommandPerformedEvent(cmd.getClass(), res));
 	}
+	
+	/**
+	 * pointcut on {@link CherrryPick}
+	 * @param cmd
+	 */
+	pointcut execOnClone(org.eclipse.jgit.api.CloneCommand cmd):
+		execution(public org.eclipse.jgit.api.Git org.eclipse.jgit.api.CloneCommand.call(..))
+		&& this(cmd);
+
+	/**
+	 * Advice on {@link FetchCommand}
+	 * @param cmd
+	 * @param res
+	 */
+	after(org.eclipse.jgit.api.CloneCommand cmd) returning(org.eclipse.jgit.api.Git res): execOnClone(cmd) {
+		res.getRepository().fireEvent(new CommandPerformedEvent(cmd.getClass(), res));
+	}
 }
