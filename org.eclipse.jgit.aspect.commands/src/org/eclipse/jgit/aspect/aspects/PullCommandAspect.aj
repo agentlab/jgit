@@ -1,5 +1,6 @@
 package org.eclipse.jgit.aspect.aspects;
 
+import org.eclipse.jgit.api.CheckoutResult;
 import org.eclipse.jgit.api.FetchCommand;
 import org.eclipse.jgit.api.PullCommand;
 import org.eclipse.jgit.api.PushCommand;
@@ -82,7 +83,7 @@ public aspect PullCommandAspect {
 	 * @param cmd
 	 */
 	pointcut execOnCheckout(org.eclipse.jgit.api.CheckoutCommand cmd):
-		execution(public org.eclipse.jgit.api.CheckoutResult org.eclipse.jgit.api.CheckoutCommand.call(..))
+		execution(public org.eclipse.jgit.lib.Ref org.eclipse.jgit.api.CheckoutCommand.call(..))
 		&& this(cmd);
 
 	/**
@@ -90,8 +91,9 @@ public aspect PullCommandAspect {
 	 * @param cmd
 	 * @param res
 	 */
-	after(org.eclipse.jgit.api.CheckoutCommand cmd) returning(org.eclipse.jgit.api.CheckoutResult res): execOnCheckout(cmd) {
-		cmd.getRepository().fireEvent(new CommandPerformedEvent(cmd.getClass(), res));
+	after(org.eclipse.jgit.api.CheckoutCommand cmd) returning(org.eclipse.jgit.lib.Ref res): execOnCheckout(cmd) {
+		if (cmd.getResult().getStatus() == CheckoutResult.Status.OK)
+			cmd.getRepository().fireEvent(new CommandPerformedEvent(cmd.getClass(), res));
 	}
 	
 	/**
