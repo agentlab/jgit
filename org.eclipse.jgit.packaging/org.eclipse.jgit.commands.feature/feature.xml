@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <feature
-      id="com.github.jgit.commands.feature"
+      id="org.eclipse.jgit.commands.feature"
       label="Feature"
       version="1.0.0.qualifier"
       provider-name="GITHUB">
